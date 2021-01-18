@@ -33,7 +33,12 @@
 
     <build>
         <pluginManagement>
-            <plugins>
+          
+
+
+
+
+		  <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -64,18 +69,50 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.4</version>
                     <configuration>
+				
                         <warName>todolist</warName>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
+    
+
+              	<plugin>
+						<groupId>io.snyk</groupId>
+               <artifactId>snyk-maven-plugin</artifactId>
+            <version>1.2.5</version>
+            <executions>
+                <execution>
+                    <id>snyk-test</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>test</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>snyk-monitor</id>
+                    <phase>install</phase>
+                    <goals>
+                        <goal>monitor</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <apiToken>10e8dbcc-4ce1-49dc-a771-10e5931b1480</apiToken>
+                <failOnSeverity>medium</failOnSeverity>
+                <org></org>
+            </configuration>
+        </plugin>
+				
+				
+				
+				
+                    <!--groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
                         <warFile>target/todolist.war</warFile>
                         <path>/</path>
                     </configuration>
-                </plugin>
+                </plugin-->
             </plugins>
         </pluginManagement>
     </build>
